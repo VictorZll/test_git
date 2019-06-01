@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+  <context id="context1">
+  <commentGenerator>
+		<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+		<property name="suppressAllComments" value="true"/>
+  </commentGenerator>
+    <jdbcConnection connectionURL="jdbc:oracle:thin:@localhost:1521:orcl" driverClass="oracle.jdbc.OracleDriver" password="root" userId="root" />
+    <javaModelGenerator targetPackage="com.newroad.entity" targetProject="ssm/src/main/java" />
+    <sqlMapGenerator targetPackage="com.newroad.dao" targetProject="ssm/src/main/resources" />
+    <javaClientGenerator targetPackage="com.newroad.dao" targetProject="ssm/src/main/java" type="XMLMAPPER" />
+    <table schema="root" tableName="students" domainObjectName="Student"
+    enableCountByExample="false" enableDeleteByExample="false" enableDeleteByPrimaryKey="true" enableInsert="true"
+    enableSelectByExample="false" enableSelectByPrimaryKey="true" enableUpdateByExample="false"
+    enableUpdateByPrimaryKey="true" 
+    >
+    </table>
+  </context>
+</generatorConfiguration>

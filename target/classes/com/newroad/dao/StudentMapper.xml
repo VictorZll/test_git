@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newroad.dao.StudentMapper">
+  <resultMap id="BaseResultMap" type="com.newroad.entity.Student">
+    <result column="STUNO" jdbcType="DECIMAL" property="stuno" />
+    <result column="STUNAME" jdbcType="VARCHAR" property="stuname" />
+    <result column="STUSEX" jdbcType="VARCHAR" property="stusex" />
+    <result column="STUAGE" jdbcType="DECIMAL" property="stuage" />
+    <result column="STUID" jdbcType="DECIMAL" property="stuid" />
+  </resultMap>
+  <select id="getAll" resultMap="BaseResultMap" >
+  select * from students
+  </select>
+  <insert id="insert" parameterType="com.newroad.entity.Student">
+    insert into ROOT.STUDENTS (STUNO, STUNAME, STUSEX, 
+      STUAGE, STUID)
+    values (#{stuno,jdbcType=DECIMAL}, #{stuname,jdbcType=VARCHAR}, #{stusex,jdbcType=VARCHAR}, 
+      #{stuage,jdbcType=DECIMAL}, #{stuid,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.newroad.entity.Student">
+    insert into ROOT.STUDENTS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="stuno != null">
+        STUNO,
+      </if>
+      <if test="stuname != null">
+        STUNAME,
+      </if>
+      <if test="stusex != null">
+        STUSEX,
+      </if>
+      <if test="stuage != null">
+        STUAGE,
+      </if>
+      <if test="stuid != null">
+        STUID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="stuno != null">
+        #{stuno,jdbcType=DECIMAL},
+      </if>
+      <if test="stuname != null">
+        #{stuname,jdbcType=VARCHAR},
+      </if>
+      <if test="stusex != null">
+        #{stusex,jdbcType=VARCHAR},
+      </if>
+      <if test="stuage != null">
+        #{stuage,jdbcType=DECIMAL},
+      </if>
+      <if test="stuid != null">
+        #{stuid,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="getCount" resultType="java.lang.Integer">
+  select count(STUNO) from root.students
+  </select>
+  
+  
+  <select id="listByPage" resultMap="BaseResultMap">
+<!--   <bind name="xxx" value=""/> -->
+    select STUNO,STUNAME,STUID,STUSEX,STUAGE from (select STUNO,STUNAME,STUID,STUSEX,STUAGE,rownum rn from root.students where rownum &lt;= #{rows}) where rn &gt; #{offset} 
+  </select> 
+  <select id="getById" resultMap="BaseResultMap" >
+  select STUNO,STUNAME,STUID,STUSEX,STUAGE from root.students where stuid=#{id}
+  </select>
+  
+</mapper>

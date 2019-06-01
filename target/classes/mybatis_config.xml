@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="cacheEnabled" value="true"/>
+	  	<setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>	
+	<typeAliases>
+<!-- 	给指定包下所有类取别名，默认是类名 -->
+	<package name="com.newroad"/>
+	</typeAliases>
+	<!-- 只配置别名和全局settings，其他的属性配了，也不起作用 -->
+	
+</configuration>  
