@@ -58,11 +58,29 @@ $(function(){
 	"json"
 	)
 });
-function deleteStudent(stuNo){
-	var isDelete=confirm("是否删除学号是"+stuNo+"的学生信息");
+function remove(stuid){
+	var isDelete=confirm("是否删除id是"+stuid+"的学生信息");
 	if(isDelete){
 		//使用location跳转到删除操作的jsp中，并将学号通过参数的方式传递给执行删除操作的jsp
-		location.href="manager/deleteStu.do?stuNo="+stuNo ;
+		//location.href="manager/deleteStu.do?stuNo="+stuNo ;
+		//使用ajax
+		$.get(
+			"removeById",
+			{id:stuid},
+			function(data){
+				console.log(data);
+				if(data){
+					$.messager.show({
+						title:'我的消息',
+						msg:'消息将在0.5秒后关闭。',
+						timeout:500,
+						showType:'slide'
+					});
+					loadData();
+				}
+			},
+			"json"
+	)
 	}
 }
 function updateStudent(stuNo){
@@ -72,7 +90,10 @@ function updateStudent(stuNo){
 		location.href="manager/getStuById.do?action=update&stuNo="+stuNo ;
 	}
 }
-$(function(){
+function edit(stuid){
+	location.href="editById?id="+stuid;
+}
+function loadData(){
 	$("#dg").datagrid({
 		url:"listByPage",
 	 	//toolbar:"#tb",//设置工具条
@@ -94,13 +115,17 @@ $(function(){
   		{field:"stuid",title:"id",width:100},
 		{field:"operation",title:"操作",width:200,
 			formatter: function(value,row,index){
-				return "<a href='javascript:edit("+row.payerCode+");'>修改</a>"+
-				"&emsp;<a href='javascript:remove("+row.payerCode+");'>删除</a>"+
-				"&emsp;<a href='javascript:addTask("+row.payerCode+");'>新增任务</a>";
+				return "<a href='javascript:edit("+row.stuid+");'>修改</a>"+
+				"&emsp;<a href='javascript:remove("+row.stuid+");'>删除</a>"+
+				"&emsp;<a href='javascript:addTask("+row.stuid+");'>新增任务</a>";
 				
 		}}
 	]]	
 	});
+}
+
+$(function(){
+	loadData();
 });
 </script>
 </head>

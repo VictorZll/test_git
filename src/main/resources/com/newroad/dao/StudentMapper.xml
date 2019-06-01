@@ -61,10 +61,16 @@
   
   <select id="listByPage" resultMap="BaseResultMap">
 <!--   <bind name="xxx" value=""/> -->
-    select STUNO,STUNAME,STUID,STUSEX,STUAGE from (select STUNO,STUNAME,STUID,STUSEX,STUAGE,rownum rn from root.students where rownum &lt;= #{rows}) where rn &gt; #{offset} 
+    select STUNO,STUNAME,STUID,STUSEX,STUAGE from (select STUNO,STUNAME,STUID,STUSEX,STUAGE,rownum rn from root.students where rownum &lt;= #{rows}) where rn &gt; #{offset} order by stuid
   </select> 
   <select id="getById" resultMap="BaseResultMap" >
   select STUNO,STUNAME,STUID,STUSEX,STUAGE from root.students where stuid=#{id}
   </select>
+  <delete id="removeById">
+  delete from root.students where stuid=#{id}
+  </delete>
+  <update id="updateById" parameterType="Student" >
+  update students set stuno=#{stu.stuno},stuname=#{stu.stuname},stusex=#{stu.stusex},stuage=#{stu.stuage} where stuid=#{stu.stuid}
+  </update>
   
 </mapper>

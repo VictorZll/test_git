@@ -26,7 +26,7 @@ public class StudentServiceImp implements StudentServiceIf {
 		double count=getCount();
 		System.out.println("count="+count);
 		int pageCount=(int) Math.ceil(count/rows);
-		if(page<pageCount) {
+		if(page>pageCount) {
 			page=pageCount;
 		}
 		if(page<1) {
@@ -45,6 +45,22 @@ public class StudentServiceImp implements StudentServiceIf {
 	public Student getById(Integer id) {
 		return dao.getById(id);
 		
+	}
+
+	@Override
+	public Boolean removeById(Integer id) {
+		
+		return dao.removeById(id)>0?true:false;
+	}
+
+	@Override
+	public Integer add(Student stu) {
+		return dao.insertSelective(stu);
+	}
+
+	@Override
+	public Integer updateById(Student stu) {
+		return dao.updateById(stu);
 	}
 
 

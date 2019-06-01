@@ -59,13 +59,12 @@ public class Student {
 				+ ", stuid=" + stuid + "]";
 	}
 
-	public Student(BigDecimal stuno, String stuname, String stusex, Short stuage, BigDecimal stuid) {
+	public Student(BigDecimal stuno, String stuname, String stusex, Short stuage) {
 		super();
 		this.stuno = stuno;
 		this.stuname = stuname;
 		this.stusex = stusex;
 		this.stuage = stuage;
-		this.stuid = stuid;
 	}
 
 	public Student() {

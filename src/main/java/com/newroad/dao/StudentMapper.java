@@ -8,7 +8,11 @@ import com.newroad.entity.Student;
 
 public interface StudentMapper {
     int insert(Student record);
-
+    /**
+     * 添加的方法
+     * @param record
+     * @return
+     */
     int insertSelective(Student record);
     /**
      * 获得全部数据
@@ -33,4 +37,17 @@ public interface StudentMapper {
      * @return
      */
     Student getById(Integer id);
+    /**
+     * 删除的方法
+     * @param id
+     * @return
+     */
+    Integer removeById(Integer id);
+    /**
+     * 修改的方法
+     * @param stu
+     * @return
+     */
+    Integer updateById(@Param("stu") Student stu);
+ 
 }

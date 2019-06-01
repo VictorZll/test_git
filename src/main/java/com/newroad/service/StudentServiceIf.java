@@ -13,4 +13,10 @@ public interface StudentServiceIf {
 	Integer getCount();
 	
 	Student getById(Integer id);
+	
+	Boolean removeById(Integer id);
+	
+	Integer add(Student stu);
+	
+	Integer updateById(Student stu);
 }
