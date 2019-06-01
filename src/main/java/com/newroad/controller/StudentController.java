@@ -63,7 +63,7 @@ public class StudentController {
 	public Student getById(ModelAndView mv) {
 		int id=(int) mv.getModelMap().get("id");
 		return studentServiceImp.getById(id);
-	}
+	}    
 	@GetMapping("/editById")
 	public ModelAndView editById(@RequestParam("id")Integer id) {
 		ModelAndView mv=new ModelAndView();
